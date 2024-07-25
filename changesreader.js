@@ -2,7 +2,8 @@ const { pipeline } = require('node:stream/promises')
 const { URL } = require('url')
 const querystring = require('querystring')
 const jsonpour = require('jsonpour')
-const request = require('./request.js')
+const stream = require('stream')
+const Readable = stream.Readable
 const changeProcessor = require('./changeProcessor.js')
 const pkg = require('./package.json')
 const h = {
@@ -28,10 +29,10 @@ const changesreader = async (url, db, since, ws, deletions) => {
     include_docs: true,
     seq_interval: 10000
   })
-  opts.url = `${plainURL}/${db}/_changes?${qs}`
-  const response = await request.requestStream(opts)
+  const u = `${plainURL}/${db}/_changes?${qs}`
+  const response = await fetch(u, opts)
   await pipeline(
-    response,
+    Readable.fromWeb(response.body),
     jsonpour.parse('results.*.doc'),
     changeProcessor(deletions),
     ws)
