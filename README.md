@@ -1,7 +1,7 @@
-# couchexport 
+# couchcsvexport 
 ## Introduction
 
-The _couchexport_ command-line utility is useful for exporting Apache CouchDB database to CSV format. Note:
+The _couchcsvexport_ command-line utility is useful for exporting Apache CouchDB database to CSV format. Note:
 
 - the documents must be uniform i.e. have the same number of attributes.
 - "flat" JSON documents make for better CSV exports
@@ -12,17 +12,16 @@ The _couchexport_ command-line utility is useful for exporting Apache CouchDB da
 Install using npm or another Node.js package manager:
 
 ```sh
-npm install -g couchexport
+npm install -g couchcsvexport
 ```
 
 ## Usage
 
-_couchexport_  writes its CSV to stdout which can be redirected to a file:
+_couchcsvexport_  (or its alias _couchexport_) writes a CSV to stdout which can be redirected to a file:
 
 ```sh
 couchexport --db mydatabase > mydatabase.csv
 ```
-
 
 *couchexport*'s configuration parameters can be stored in environment variables or supplied as command line arguments.
 
