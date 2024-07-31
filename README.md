@@ -44,5 +44,15 @@ export COUCH_DATABASE="mydatabase"
 Supply the `--url` and `--database` parameters as command-line parameters instead:
 
 ```sh
-couchexport --url "http://user:password@localhost:5984" --database "mydata" mydata.jsonl
+couchexport --url "http://user:password@localhost:5984" --database "mydata"
+```
+
+## IAM
+
+To use IBM IAM authentication, use the `IAM_API_KEY` environment variable e.g.
+
+```sh
+export IAM_API_KEY="my_api_key"
+export COUCH_URL="https://my.cloudant.com"
+couchexport --db mydata
 ```
